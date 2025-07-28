@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      background: black;
+      user-select: none;
+      overflow: hidden;
+    }
+ span{
+  position: absolute;
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS11gXyOoaWbS2C47F5Bp-1MuWGG40Oc33ikw&s");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  border-radius: 50%;
+  transition: 2s;
+ }
+ .MoveTop {
+  transform: translateY(-900px);
+  opacity: 0;
+}
+  </style>
+</head>
+<body>
+</body>
+<script>
+  document.addEventListener("mousemove",function(ele)
+  {
+    let body = document.querySelector("body");
+    let span = document.createElement("span");
+    span.style.left = `${ele.clientX}px`;
+    let s = Math.random()*100;
+    span.style.height=`${s}px`;
+    span.style.width=`${s}px`;
+    span.style.top= `${ele.clientY}px`;
+    body.appendChild(span)
+    setTimeout(()=>{
+      span.classList.add("MoveTop");
+  },50);
+    setTimeout(()=>span.remove(),2050);
+  })
+</script>
+</html>
