@@ -5,49 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    *{
+    * {
       margin: 0;
       padding: 0;
-    }
-    body{
-      background: black;
-      user-select: none;
       overflow: hidden;
     }
- span{
-  position: absolute;
-  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS11gXyOoaWbS2C47F5Bp-1MuWGG40Oc33ikw&s");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  background-position: center;
-  border-radius: 50%;
-  transition: 2s;
- }
- .MoveTop {
-  transform: translateY(-900px);
-  opacity: 0;
-}
+    body {
+      background: black;
+      user-select: none;
+      touch-action: none; /* Prevent scroll on mobile */
+    }
+    span {
+      position: absolute;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 50px;
+      height: 50px;
+      background-position: center;
+      border-radius: 50%;
+      transition: 3s;
+      pointer-events: none;
+    }
+    .MoveTop {
+      transform: translateY(-900px);
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
 </body>
 <script>
-  document.addEventListener("mousemove",function(ele)
-  {
-    let body = document.querySelector("body");
+  document.addEventListener("pointermove", function (ele) {
+    let body = document.body;
     let span = document.createElement("span");
     span.style.left = `${ele.clientX}px`;
-    let s = Math.random()*100;
-    span.style.height=`${s}px`;
-    span.style.width=`${s}px`;
-    span.style.top= `${ele.clientY}px`;
-    body.appendChild(span)
-    setTimeout(()=>{
+    span.style.top = `${ele.clientY}px`;
+
+    let s = Math.random() * 100;
+    span.style.height = `${s}px`;
+    span.style.width = `${s}px`;
+
+    let arr = [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS11gXyOoaWbS2C47F5Bp-1MuWGG40Oc33ikw&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpDZ7G-QTxA8c_qbkuI8LN4QHnoyI7FGP7Wg&s",
+      "https://pngemoji.com/wp-content/uploads/2025/05/Silly-Happy-Blue-Emoji-PNG-%E2%80%93-Transparent-ClipArt-with-Mischievous-Grin-1024x1024.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3MeVugl3oHbF1wAbqwIz-zpEWrOJy0zieWA&s",
+      "https://img.freepik.com/premium-psd/3d-render-emoji-emoticon-with-transparent-background-clipping-path_252008-884.jpg",
+      "https://freesvg.org/img/Arnoud999-Right-or-wrong-3.png"
+    ];
+    
+    let x = Math.floor(Math.random() * arr.length);
+    span.style.backgroundImage = `url(${arr[x]})`;
+
+    body.appendChild(span);
+
+    setTimeout(() => {
       span.classList.add("MoveTop");
-  },50);
-    setTimeout(()=>span.remove(),2050);
-  })
+    }, 50);
+
+    setTimeout(() => span.remove(), 3050);
+  });
 </script>
 </html>
